@@ -1,0 +1,62 @@
+[2026-02-01 23:17:01] [0;36m============================================================[0m
+[2026-02-01 23:17:01] [0;36mSACS ULTRA-EFFECTIVE PSA BROADCAST[0m
+[2026-02-01 23:17:01] [0;36m============================================================[0m
+[2026-02-01 23:17:01] [0;36m============================================================[0m
+[2026-02-01 23:17:01] [0;36mMULTI-REDUNDANT DEPLOYMENT[0m
+[2026-02-01 23:17:01] [0;36m============================================================[0m
+[2026-02-01 23:17:01] 
+[1/5] Reading HTML files...
+[2026-02-01 23:17:01] 
+[2/5] Deploying context page to multiple hosts...
+[2026-02-01 23:17:01] Uploading cybrella_context.html to 0x0.st...
+[2026-02-01 23:17:02] [0;32m✓ 0x0.st: https://0x0.st/PbHX.html[0m
+[2026-02-01 23:17:04] Uploading cybrella_context.html to transfer.sh...
+[2026-02-01 23:17:07] Uploading cybrella_context.html to file.io...
+[2026-02-01 23:17:07] [1;33mfile.io failed: Expecting value: line 1 column 1 (char 0)[0m
+[2026-02-01 23:17:07] 
+[3/5] Creating short URL for context page...
+[2026-02-01 23:17:08] [1;33mShort URL failed: HTTP Error 403: Forbidden[0m
+[2026-02-01 23:17:08] 
+[4/5] Linking pages together...
+[2026-02-01 23:17:08] 
+[5/5] Deploying main page to multiple hosts...
+[2026-02-01 23:17:08] Uploading cybrella_exposure.html to 0x0.st...
+[2026-02-01 23:17:09] [0;32m✓ 0x0.st: https://0x0.st/PbH8.html[0m
+[2026-02-01 23:17:11] Uploading cybrella_exposure.html to transfer.sh...
+[2026-02-01 23:17:14] Uploading cybrella_exposure.html to file.io...
+[2026-02-01 23:17:14] [1;33mfile.io failed: Expecting value: line 1 column 1 (char 0)[0m
+[2026-02-01 23:17:14] 
+Creating short URL for main page...
+[2026-02-01 23:17:14] [1;33mShort URL failed: HTTP Error 403: Forbidden[0m
+[2026-02-01 23:17:14] URLs saved to: /data/data/com.termux/files/home/.sacs_psa_ultra/urls.json
+[2026-02-01 23:17:14] 
+[0;36m============================================================[0m
+[2026-02-01 23:17:14] [0;32m✓✓✓ MULTI-REDUNDANT DEPLOYMENT SUCCESS ✓✓✓[0m
+[2026-02-01 23:17:14] [0;36m============================================================[0m
+[2026-02-01 23:17:14] 
+[1;33mMain Exposure Page:[0m
+[2026-02-01 23:17:14]   Primary: https://0x0.st/PbH8.html
+[2026-02-01 23:17:14]   Short URL: https://0x0.st/PbH8.html
+[2026-02-01 23:17:14] 
+[1;33mFull Context Page:[0m
+[2026-02-01 23:17:14]   Primary: https://0x0.st/PbHX.html
+[2026-02-01 23:17:14]   Short URL: https://0x0.st/PbHX.html
+[2026-02-01 23:17:15] 
+[1;33mStarting broadcast systems...[0m
+[2026-02-01 23:17:15] [0;32mHTTP server on port 8888[0m
+[2026-02-01 23:17:15] [0;32mHTTP server on port 5000[0m
+[2026-02-01 23:17:15] [0;32mUDP broadcast active on 13 ports[0m
+[2026-02-01 23:17:15] [0;32mHTTP server on port 8000[0m
+[2026-02-01 23:17:15] [0;32mHTTP server on port 8080[0m
+[2026-02-01 23:17:15] [0;32mHTTP server on port 9000[0m
+[2026-02-01 23:17:15] [0;32mmDNS broadcast active[0m
+[2026-02-01 23:17:15] [0;32mHTTP server on port 7777[0m
+[2026-02-01 23:17:15] [0;32mHTTP server on port 3000[0m
+[2026-02-01 23:17:17] 
+[0;32mBroadcasting on:[0m
+[2026-02-01 23:17:17]   • 7 HTTP ports (redirect to main page)
+[2026-02-01 23:17:17]   • 13 UDP ports (full message)
+[2026-02-01 23:17:17]   • mDNS/Bonjour (4 services)
+[2026-02-01 23:17:17] 
+[0;32mPress Ctrl+C to stop[0m
+
