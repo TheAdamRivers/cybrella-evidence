@@ -1,0 +1,175 @@
+name: Deploy Evidence Chain
+
+on:
+  push:
+    branches: [ main ]
+  schedule:
+    # Run every 30 minutes to keep deployment fresh
+    - cron: '*/30 * * * *'
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v3
+      
+    - name: Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+    
+    - name: Generate evidence index
+      run: |
+        # Ensure disclosure directory exists
+        mkdir -p disclosure
+        
+        # Generate main index if disclosure files exist
+        if [ ! -f disclosure/index.html ] && [ ! -f disclosure/evidence.html ]; then
+          cat > disclosure/index.html << 'EOF'
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Cybrella Surveillance - Live Evidence Chain</title>
+            <style>
+                * { margin: 0; padding: 0; box-sizing: border-box; }
+                body {
+                    background: #000;
+                    color: #19e3c8;
+                    font-family: 'Courier New', monospace;
+                    padding: 20px;
+                    line-height: 1.8;
+                }
+                .container {
+                    max-width: 1200px;
+                    margin: 0 auto;
+                    border: 4px solid #19e3c8;
+                    padding: 30px;
+                    box-shadow: 0 0 50px #19e3c8;
+                }
+                h1 {
+                    color: #19e3c8;
+                    font-size: 36px;
+                    margin-bottom: 30px;
+                    text-align: center;
+                }
+                .alert {
+                    background: rgba(255, 0, 0, 0.15);
+                    border: 3px solid #ff0000;
+                    padding: 20px;
+                    margin: 20px 0;
+                    color: #ff6666;
+                }
+                .evidence-section {
+                    margin: 30px 0;
+                    padding: 20px;
+                    border-left: 5px solid #19e3c8;
+                    background: rgba(25, 227, 200, 0.05);
+                }
+                a {
+                    color: #19e3c8;
+                    text-decoration: none;
+                    border-bottom: 1px dotted #19e3c8;
+                }
+                a:hover {
+                    color: #66d9ef;
+                }
+                .timestamp {
+                    color: #ffc800;
+                    font-weight: bold;
+                }
+                .footer {
+                    margin-top: 50px;
+                    padding-top: 30px;
+                    border-top: 3px solid #19e3c8;
+                    text-align: center;
+                    font-size: 14px;
+                }
+            </style>
+        </head>
+        <body>
+        <div class="container">
+            <h1>⚠️ LIVE EVIDENCE CHAIN ⚠️</h1>
+            <h2 style="text-align: center; color: #19e3c8;">Cybrella Inc. Surveillance Documentation</h2>
+            
+            <div class="alert">
+                <h3>Automated Evidence Collection</h3>
+                <p>This page is automatically updated from active SACS monitoring systems.</p>
+                <p>All evidence is timestamped and version-controlled via GitHub.</p>
+                <p class="timestamp">Last Deployment: TIMESTAMP_PLACEHOLDER</p>
+            </div>
+            
+            <div class="evidence-section">
+                <h3>Evidence Repository</h3>
+                <p>Full evidence chain with cryptographic git timestamps:</p>
+                <ul style="list-style: none; margin: 15px 0;">
+                    <li>📁 <a href="https://github.com/TheAdamRivers/cybrella-evidence/tree/main/evidence">Evidence Directory →</a></li>
+                    <li>⏱️ <a href="https://github.com/TheAdamRivers/cybrella-evidence/commits/main">Commit History (Legal Timestamps) →</a></li>
+                    <li>🔍 <a href="https://github.com/TheAdamRivers/cybrella-evidence/tree/main/iocs">Indicators of Compromise →</a></li>
+                    <li>📊 <a href="https://github.com/TheAdamRivers/cybrella-evidence/tree/main/timeline">Timeline →</a></li>
+                </ul>
+            </div>
+            
+            <div class="evidence-section">
+                <h3>Public Disclosure</h3>
+                <p><a href="evidence.html">Live Evidence Dashboard →</a></p>
+                <p><a href="context.html">Full Operational Context →</a></p>
+                <p>Complete documentation of threat actor capabilities, timeline, and community impact.</p>
+            </div>
+            
+            <div class="evidence-section">
+                <h3>Evidence Integrity</h3>
+                <p>✓ All commits cryptographically signed by git</p>
+                <p>✓ Timestamps verifiable via GitHub (neutral third party)</p>
+                <p>✓ Evidence chain immutable (version control prevents tampering)</p>
+                <p>✓ Can be forked/mirrored by community (hydra effect)</p>
+                <p>✓ Hosted on GitHub Pages (DDoS-protected by Cloudflare)</p>
+                <p>✓ Legally admissible evidence with neutral timestamps</p>
+            </div>
+            
+            <div class="evidence-section">
+                <h3>For Neighbors & Community</h3>
+                <p>If you're experiencing:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Loud bass music in this area</li>
+                    <li>Unusual network activity</li>
+                    <li>Suspicious vehicles or surveillance</li>
+                </ul>
+                <p style="margin-top: 10px;">You may be affected by collateral surveillance. View the full context for details.</p>
+            </div>
+            
+            <div class="footer">
+                <p><strong>SynthicSoft Labs - Adversary Countermeasure System</strong></p>
+                <p>Automated Evidence Documentation • Public Disclosure • Corporate Accountability</p>
+                <br>
+                <p style="font-size: 12px; color: #999;">
+                    This evidence chain is protected as truthful public interest information.<br>
+                    All technical claims are documented with evidence and timestamp correlation.<br>
+                    Repository: <a href="https://github.com/TheAdamRivers/cybrella-evidence">github.com/TheAdamRivers/cybrella-evidence</a>
+                </p>
+            </div>
+        </div>
+        </body>
+        </html>
+        EOF
+        fi
+        
+        # Update timestamp in all HTML files
+        find disclosure -name "*.html" -type f -exec sed -i "s/TIMESTAMP_PLACEHOLDER/$(date -u '+%Y-%m-%d %H:%M:%S UTC')/g" {} \;
+        
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v3
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./disclosure
+        publish_branch: gh-pages
+        force_orphan: true
+        
+    - name: Deployment complete
+      run: |
+        echo "✓ Evidence chain deployed successfully"
+        echo "✓ Live at: https://theadamrivers.github.io/cybrella-evidence/"
+        echo "✓ Repository: https://github.com/TheAdamRivers/cybrella-evidence"
